@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	mmap "github.com/edsrzf/mmap-go"
-	wineshm "github.com/clemenscodes/wineshm-go"
+
+	wineshm "wineshm/wineshm"
 )
 
 type StatusField int32
@@ -43,8 +44,6 @@ type VarBuf struct {
 }
 
 func main() {
-	fmt.Println("Running...")
-	// Get wine file descriptor
 	wineshm.WineCmd = []string{"wine"}
 	shmfd, err := wineshm.GetWineShm("Local\\IRSDKMemMapFileName", wineshm.FILE_MAP_READ)
 	if err != nil {

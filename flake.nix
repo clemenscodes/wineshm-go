@@ -27,12 +27,16 @@
             go-bindata
             wineWow64Packages.stagingFull
             pkgsCross.mingw32.stdenv.cc
+            lsof
+            fuse
           ];
           nativeBuildInputs = with pkgs; [
             pkg-config
           ];
           shellHook = ''
-            export GOPATH="$(pwd)/deps"
+            export WINEPREFIX="$(pwd)/.wine"
+            export SHMWRAPPER1_PATH="$(pwd)/assets/shmwrapper1.exe"
+            export SHMWRAPPER2_PATH="$(pwd)/assets/shmwrapper2.bin"
           '';
         };
       };
