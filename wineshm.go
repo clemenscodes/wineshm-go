@@ -40,23 +40,34 @@ func GetWineShm(shmname string, mode string) (uintptr, error) {
 	defer unix.Close(fds[0])
 	defer unix.Close(fds[1])
 
-	// Create the first wrapper from binary data in bindata.go and place in in
-	// the systems temp directory
-	shmwrapper1, err := getAsset("assets/shmwrapper1.exe")
+	// Retrieve shmwrapper1 and shmwrapper2 paths from environment variables
+	shmwrapper1Path := os.Getenv("SHMWRAPPER1_PATH")
+	if shmwrapper1Path == "" {
+		shmwrapper1Path = "assets/shmwrapper1.exe" // Default if env var not set
+	}
+
+	shmwrapper2Path := os.Getenv("SHMWRAPPER2_PATH")
+	if shmwrapper2Path == "" {
+		shmwrapper2Path = "assets/shmwrapper2.bin" // Default if env var not set
+	}
+
+	// Create the first wrapper from binary data in bindata.go and place it in
+	// the system's temp directory
+	shmwrapper1, err := getAsset(shmwrapper1Path)
 	if err != nil {
 		return 0, err
 	}
-	shmwrapper1Path := shmwrapper1.Name()
+	shmwrapper1Path = shmwrapper1.Name()
 	defer os.Remove(shmwrapper1Path)
 
-	// Create the second wrapper from binary data in bindata.go and place in in
-	// the systems temp directory
-	shmwrapper2, err := getAsset("assets/shmwrapper2.bin")
+	// Create the second wrapper from binary data in bindata.go and place it in
+	// the system's temp directory
+	shmwrapper2, err := getAsset(shmwrapper2Path)
 	if err != nil {
 		return 0, err
 	}
-	shmwrapper2Path := shmwrapper2.Name()
-	// This is tricky: on some distro's the temp directory doesn't allow for
+	shmwrapper2Path = shmwrapper2.Name()
+	// This is tricky: on some distros the temp directory doesn't allow for
 	// running executables
 	os.Chmod(shmwrapper2Path, 0500)
 	defer os.Remove(shmwrapper2Path)
