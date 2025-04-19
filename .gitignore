@@ -3,3 +3,5 @@ shmwrapper2.bin
 assets/*
 !assets/.gitkeep
 bindata.go
+result
+.direnv
