@@ -32,7 +32,7 @@
             pkg-config
           ];
           shellHook = ''
-
+            export GOPATH="$(pwd)/deps"
           '';
         };
       };

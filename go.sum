@@ -1,0 +1,6 @@
+github.com/clemenscodes/wineshm-go v0.0.0-20150719205259-4d7fa7caceb4 h1:eZMQC9RePNH5+eBAFsQq49W/43bSJBMU4+N1FqWuD94=
+github.com/clemenscodes/wineshm-go v0.0.0-20150719205259-4d7fa7caceb4/go.mod h1:aVXPjUMgCUTCBdeyeT/hq1GW7pFEErQ2mnG+SHD0Aic=
+github.com/edsrzf/mmap-go v1.2.0 h1:hXLYlkbaPzt1SaQk+anYwKSRNhufIDCchSPkUD6dD84=
+github.com/edsrzf/mmap-go v1.2.0/go.mod h1:19H/e8pUPLicwkyNgOykDXkJ9F0MHE+Z52B8EIth78Q=
+golang.org/x/sys v0.32.0 h1:s77OFDvIQeibCmezSnk/q6iAfkdiQaJi4VzroCFrN20=
+golang.org/x/sys v0.32.0/go.mod h1:BJP2sWEmIv4KK5OTEluFJCKSidICx8ciO85XgH3Ak8k=

@@ -43,23 +43,23 @@ type VarBuf struct {
 }
 
 func main() {
+	fmt.Println("Running...")
 	// Get wine file descriptor
-	fmt.Println("hello")
-	// wineshm.WineCmd = []string{"/opt/iracing/bin/wine", "--bottle", "default"}
-	// shmfd, err := wineshm.GetWineShm("Local\\IRSDKMemMapFileName", wineshm.FILE_MAP_READ)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	//
-	// // Turn file descriptor into os.File
-	// file := os.NewFile(shmfd, "Local\\IRSDKMemMapFileName")
-	//
-	// mmap, err := mmap.Map(file, mmap.RDONLY, 0)
-	// if err != nil {
-	// 	log.Fatalf("error mapping: %s", err)
-	// }
-	//
-	// fmt.Println(len(mmap))
-	// header := (*Header)(unsafe.Pointer(&mmap))
-	// fmt.Printf("%+v", header)
+	wineshm.WineCmd = []string{"wine"}
+	shmfd, err := wineshm.GetWineShm("Local\\IRSDKMemMapFileName", wineshm.FILE_MAP_READ)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Turn file descriptor into os.File
+	file := os.NewFile(shmfd, "Local\\IRSDKMemMapFileName")
+
+	mmap, err := mmap.Map(file, mmap.RDONLY, 0)
+	if err != nil {
+		log.Fatalf("error mapping: %s", err)
+	}
+
+	fmt.Println(len(mmap))
+	header := (*Header)(unsafe.Pointer(&mmap))
+	fmt.Printf("%+v", header)
 }
